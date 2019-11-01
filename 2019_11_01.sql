@@ -238,7 +238,7 @@ SELECT CONCAT(CONCAT('HELLO', ',') , 'WORLD') CONCAT, --별칭정해준것.
 FROM dual;
 
 
---수정
+--수정1
 
 
 
