@@ -215,29 +215,3 @@ SELECT TO_DATE('20191104','YYYYMMDD') - TO_DATE('20191101','YYYYMMDD') D1,
        ADD_MONTHS(TO_DATE('201908','YYYYMM'),1) - TO_DATE('201908','YYYYMM')D3
 FROM dual;
    
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
