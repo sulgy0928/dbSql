@@ -193,7 +193,7 @@ SELECT SYSDATE,
 FROM dual;
    
    
---LAST_DAY(DATE)해당 날짜가 속한 원의 마지막 일자
+--LAST_DAY(DATE)해당 날짜가 속한 월의 마지막 일자
 SELECT SYSDATE, LAST_DAY(SYSDATE) LAST_DAY,
        LAST_DAY(ADD_MONTHS(SYSDATE,1)) LAST_DAY_12
 FROM dual;
