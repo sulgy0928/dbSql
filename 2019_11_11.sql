@@ -262,8 +262,6 @@ WHERE empno IN (7566, 7698,7499);
 
 
 
-
-
 SELECT empno, ename
 FROM EMP
 WHERE empno IN (7566, 7698,7499)
@@ -281,12 +279,21 @@ WHERE OWNER = 'PC02'
 AND TABLE_NAME IN ('PROD','LPROD')
 AND CONSTRAINT_TYPE IN ('P','R');
 
+--½Ç½À sub7 ppt 249p
 
+SELECT cid, product.cnm, product.pid, pnm, day, cnt
+FROM cycle, product
+WHERE cid = 1
+AND pid IN    (SELECT pid 
+                         FROM cycle
+                         WHERE cid = 2);
 
+SELECT *
+FROM cycle;        --cid, pid, day, cnt
+        
+SELECT *
+FROM  product;    --pid, pnm   
 
-
-        
-        
-        
-        
+SELECT *
+FROM customer;  --cid, cnm
         
