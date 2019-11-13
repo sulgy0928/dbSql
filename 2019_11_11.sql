@@ -296,4 +296,14 @@ FROM  product;    --pid, pnm
 
 SELECT *
 FROM customer;  --cid, cnm
+
+
+
+
+
+
+
+
+
+
         
