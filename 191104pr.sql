@@ -42,17 +42,37 @@ FROM emp, dept
 WHERE emp.deptno = dept.deptno;
 
 
+SELECT emp.empno, emp.ename, emp.deptno, dept.dname
+FROM emp JOIN dept ON (emp.deptno = dept.deptno);
 
+--½Ç½À(JOIN 0) ppt 180p
+SELECT emp.empno, emp.ename, emp.deptno, dept.dname
+FROM emp JOIN dept ON(emp.deptno = dept.deptno ); 
 
+SELECT *
+FROM emp; --empno, ename, job, mgr, hiredate, sal, comm, deptno
 
+SELECT *
+FROM dept; --deptno, dname, loc
 
+SELECT emp.empno, emp.ename, emp.deptno, dept.dname
+FROM emp JOIN dept ON (emp.deptno = dept.deptno)
+WHERE emp.deptno IN (10, 30);
 
+SELECT emp.empno, emp.ename, emp.deptno, dept.dname
+FROM emp JOIN dept ON(emp.deptno = dept.deptno ) 
+WHERE emp.deptno = 10
+           OR emp.deptno = 30;        
 
+SELECT emp.empno, emp.ename, sal, emp.deptno, dept.dname
+FROM emp JOIN dept ON(emp.deptno = dept.deptno)
+WHERE sal > 2500;
 
-
-
-
-
+--183p
+SELECT emp.empno, emp.ename, sal, emp.deptno, dept.dname
+FROM emp JOIN dept ON (emp.deptno = dept.deptno)
+WHERE sal > 2500
+        AND empno > 7600;
 
 
 
