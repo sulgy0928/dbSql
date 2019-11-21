@@ -153,6 +153,39 @@ SELECT *--region_id, region_name, country_name
 FROM countries, regions;
 
 
+SELECT deptno --20
+FROM emp
+WHERE ename = 'SMITH';
+
+SELECT *
+FROM emp
+WHERE deptno = 20;
+
+--평균급여 --2073
+SELECT ROUND(AVG(sal)) avg_sal
+FROM emp
+WHERE sal > 2073;
+
+SELECT COUNT(*) 
+FROM emp
+WHERE sal > 2073 ;
+
+--231p 평균급여보다 높은급여받는 직원 정보조회
+SELECT * 
+FROM emp
+WHERE sal > 2073 ;
+
+
+--SALES
+SELECT *
+FROM sales;
+
+
+
+
+
+
+
 
 
 
