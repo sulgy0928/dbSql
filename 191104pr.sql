@@ -161,25 +161,48 @@ SELECT *
 FROM emp
 WHERE deptno = 20;
 
---평균급여 --2073
-SELECT ROUND(AVG(sal)) avg_sal
-FROM emp
-WHERE sal > 2073;
-
-SELECT COUNT(*) 
-FROM emp
-WHERE sal > 2073 ;
-
---231p 평균급여보다 높은급여받는 직원 정보조회
-SELECT * 
-FROM emp
-WHERE sal > 2073 ;
 
 
 --SALES
 SELECT *
-FROM sales;
+FROM emp 
+WHERE sal > (SELECT AVG(sal)
+                               FROM emp);
 
+SELECT *
+FROM emp
+WHERE sal > 
+                        (SELECT AVG(sal)
+                        FROM emp);
+
+SELECT *
+FROM emp
+ WHERE deptno IN(SELECT deptno
+                                FROM emp
+                                WHERE ename IN('SMITH', 'WARD'));
+
+SELECT *
+FROM emp
+WHERE deptno IN(SELECT deptno
+                                 FROM emp
+                                 WHERE ename IN('SMITH', 'WARD'));
+
+SELECT *
+FROM emp
+WHERE sal > ALL (SELECT sal
+                                        FROM emp
+                                        WHERE ename = 'SMITH'
+                                                OR ename = 'WARD');
+                                                
+                                                
+SELECT *
+FROM emp
+WHERE empno NOT IN (SELECT mgr
+                                                FROM emp);
+
+SELECT deptno, ROUND(AVG(sal),2) avg_sal
+FROM emp
+GROUP BY deptno;
 
 
 
