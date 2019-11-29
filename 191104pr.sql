@@ -161,24 +161,147 @@ SELECT *
 FROM emp
 WHERE deptno = 20;
 
---평균급여 --2073
-SELECT ROUND(AVG(sal)) avg_sal
-FROM emp
-WHERE sal > 2073;
-
-SELECT COUNT(*) 
-FROM emp
-WHERE sal > 2073 ;
-
---231p 평균급여보다 높은급여받는 직원 정보조회
-SELECT * 
-FROM emp
-WHERE sal > 2073 ;
 
 
 --SALES
 SELECT *
-FROM sales;
+FROM emp 
+WHERE sal > (SELECT AVG(sal)
+                               FROM emp);
+
+SELECT *
+FROM emp
+WHERE sal > 
+                        (SELECT AVG(sal)
+                        FROM emp);
+
+SELECT *
+FROM emp
+ WHERE deptno IN(SELECT deptno
+                                FROM emp
+                                WHERE ename IN('SMITH', 'WARD'));
+
+SELECT *
+FROM emp
+WHERE deptno IN(SELECT deptno
+                                 FROM emp
+                                 WHERE ename IN('SMITH', 'WARD'));
+
+SELECT *
+FROM emp
+WHERE sal > ALL (SELECT sal
+                                        FROM emp
+                                        WHERE ename = 'SMITH'
+                                                OR ename = 'WARD');
+                                                
+                                                
+SELECT *
+FROM emp
+WHERE empno NOT IN (SELECT mgr
+                                                FROM emp);
+
+SELECT deptno, ROUND(AVG(sal),2) avg_sal
+FROM emp
+GROUP BY deptno;
+
+
+--sub query
+SELECT deptno --20
+FROM emp
+WHERE ename = 'SMITH';
+
+SELECT *
+FROM emp
+WHERE deptno = 20;
+
+SELECT *
+FROM emp
+WHERE  sal > 
+                            (SELECT ROUND(AVG(sal),2) sal --2073.21
+                            FROM emp);
+             
+SELECT *
+FROM emp
+WHERE job IN (SELECT *
+                                         FROM emp
+                                        WHERE MANAGER);
+
+SELECT *
+FROM emp 
+WHERE (mgr, deptno) IN (SELECT mgr, deptno
+                                                FROM emp
+                                                WHERE empno IN (7499, 7782));
+
+--위처럼 안하려면 아래처럼 두 배 긴 쿼리를 짜야함.
+--가독성↓↓  시간낭비 ↑↑
+
+SELECT *
+FROM emp 
+WHERE mgr    IN (SELECT mgr
+                                 FROM emp
+                                  WHERE empno IN (7499, 7782));
+SELECT *
+FROM emp 
+WHERE deptno  IN (SELECT  deptno
+                                                FROM emp
+                                                WHERE empno IN (7499, 7782));
+
+
+SELECT (SELECT SYSDATE FROM dual) sdt
+FROM dual;
+
+SELECT (SELECT dname
+                    FROM dept
+                    WHERE deptno = emp.deptno) dname,
+                    emp.empno, ename
+FROM emp;
+
+SELECT *
+FROM emp
+WHERE empno IN (SELECT mgr
+                                    FROM emp);
+
+
+SELECT *
+FROM
+            (SELECT AVG(sal) sal_avg
+            FROM emp);
+
+SELECT *
+FROM emp a
+WHERE sal > (SELECT AVG(sal)
+                            FROM emp b
+                            WHERE deptno = a.deptno);
+
+--224p 속한 부서의 급여 평균보다 높은 직원 조회.(상호연관서브쿼리)
+SELECT *
+FROM emp 
+WHERE sal > (SELECT AVG(sal)
+                            FROM emp 
+                            WHERE deptno = deptno);
+
+
+
+SELECT *
+FROM emp a;
+
+SELECT *
+FROM emp b;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
