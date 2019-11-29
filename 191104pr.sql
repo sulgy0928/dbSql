@@ -25,7 +25,7 @@ FROM dept;
 SELECT dept.dname, emp.ename, emp.job
 FROM emp NATURAL JOIN dept;
 
---oracle½Ä Áö¿øÇü½Ä
+--oracleï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 SELECT dept.dname, emp.ename, emp.job
 FROM emp, dept
 WHERE emp.deptno = dept.deptno;
@@ -45,7 +45,7 @@ WHERE emp.deptno = dept.deptno;
 SELECT emp.empno, emp.ename, emp.deptno, dept.dname
 FROM emp JOIN dept ON (emp.deptno = dept.deptno);
 
---½Ç½À(JOIN 0) ppt 180p
+--ï¿½Ç½ï¿½(JOIN 0) ppt 180p
 SELECT emp.empno, emp.ename, emp.deptno, dept.dname
 FROM emp JOIN dept ON(emp.deptno = dept.deptno ); 
 
@@ -90,7 +90,7 @@ FROM buyer; --buyer_id,buyer_name, buyer_gu
 SELECT *
 FROM prod; --prod_id, prod_name
 
---186p  JOIN¹® ½Ç½À
+--186p  JOINï¿½ï¿½ ï¿½Ç½ï¿½
 SELECT buyer_id, buyer_name, prod_id, prod_name
 FROM buyer JOIN prod ON (buyer_id = prod_buyer);
 
@@ -116,16 +116,16 @@ FROM cycle JOIN  product ON (cycle.pid = product.pid)
     AND customer.cnm IN('brown', 'sally');
 
 SELECT *
-FROM product; --Á¦Ç°. pidÇ°¹ø, pnmÇ°¸í
+FROM product; --ï¿½ï¿½Ç°. pidÇ°ï¿½ï¿½, pnmÇ°ï¿½ï¿½
 
 SELECT *
-FROM cycle; --¾ÖÀ½ÁÖ±â. cid°í°´¹øÈ£, pidÇ°¹ø, day¿äÀÏ, cnt¼ö·®
+FROM cycle; --ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½. cidï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£, pidÇ°ï¿½ï¿½, dayï¿½ï¿½ï¿½ï¿½, cntï¿½ï¿½ï¿½ï¿½
 
 SELECT *
-FROM customer; --°í°´. cid°í°´¹øÈ£, cnm°í°´¸í
+FROM customer; --ï¿½ï¿½ï¿½ï¿½. cidï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£, cnmï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 
---cycleÀÇ cid, + productÀÇ pid, pnm  
+--cycleï¿½ï¿½ cid, + productï¿½ï¿½ pid, pnm  
 
 --191p
 SELECT customer.cid, cnm, cycle.pid, pnm, sum(cnt) cnt
@@ -187,44 +187,11 @@ WHERE deptno IN(SELECT deptno
                                  FROM emp
                                  WHERE ename IN('SMITH', 'WARD'));
 
-SELECT *
-FROM emp
-WHERE sal > ALL (SELECT sal
-                                        FROM emp
-                                        WHERE ename = 'SMITH'
-                                                OR ename = 'WARD');
-                                                
-                                                
-SELECT *
-FROM emp
-WHERE empno NOT IN (SELECT mgr
-                                                FROM emp);
 
-SELECT deptno, ROUND(AVG(sal),2) avg_sal
-FROM emp
-GROUP BY deptno;
-
-
---sub query
-SELECT deptno --20
-FROM emp
-WHERE ename = 'SMITH';
-
+--SALES
 SELECT *
-FROM emp
-WHERE deptno = 20;
+FROM sales;
 
-SELECT *
-FROM emp
-WHERE  sal > 
-                            (SELECT ROUND(AVG(sal),2) sal --2073.21
-                            FROM emp);
-             
-SELECT *
-FROM emp
-WHERE job IN (SELECT *
-                                         FROM emp
-                                        WHERE MANAGER);
 
 SELECT *
 FROM emp 
@@ -232,8 +199,8 @@ WHERE (mgr, deptno) IN (SELECT mgr, deptno
                                                 FROM emp
                                                 WHERE empno IN (7499, 7782));
 
---À§Ã³·³ ¾ÈÇÏ·Á¸é ¾Æ·¡Ã³·³ µÎ ¹è ±ä Äõ¸®¸¦ Â¥¾ßÇÔ.
---°¡µ¶¼º¡é¡é  ½Ã°£³¶ºñ ¡è¡è
+--ï¿½ï¿½Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ ï¿½Æ·ï¿½Ã³ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Â¥ï¿½ï¿½ï¿½ï¿½.
+--ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  ï¿½Ã°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 
 SELECT *
 FROM emp 
@@ -273,7 +240,7 @@ WHERE sal > (SELECT AVG(sal)
                             FROM emp b
                             WHERE deptno = a.deptno);
 
---224p ¼ÓÇÑ ºÎ¼­ÀÇ ±Þ¿© Æò±Õº¸´Ù ³ôÀº Á÷¿ø Á¶È¸.(»óÈ£¿¬°ü¼­ºêÄõ¸®)
+--224p ï¿½ï¿½ï¿½ï¿½ ï¿½Î¼ï¿½ï¿½ï¿½ ï¿½Þ¿ï¿½ ï¿½ï¿½Õºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¸.(ï¿½ï¿½È£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
 SELECT *
 FROM emp 
 WHERE sal > (SELECT AVG(sal)
